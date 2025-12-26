@@ -97,20 +97,23 @@ export default function ProductDetailPage() {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  const handleRelatedProductCart = (relatedProduct: Product) => {
+  const handleRelatedProductCart = (relatedProduct: any) => {
     const cartProduct = {
       id: relatedProduct.id,
       name: relatedProduct.name,
       description: relatedProduct.description,
       price: relatedProduct.price,
       originalPrice: relatedProduct.compare_at_price || undefined,
-      image: relatedProduct.images[0] || '',
-      images: relatedProduct.images,
+      image: relatedProduct.images?.[0] || relatedProduct.image || '',
+      images: relatedProduct.images || [],
       category: relatedProduct.category,
       brand: relatedProduct.category,
       rating: 4.5,
       reviews: 0,
-      inStock: relatedProduct.in_stock,
+      inStock: relatedProduct.in_stock || true,
+      ingredients: relatedProduct.ingredients || [],
+      usage: relatedProduct.usage || '',
+      faqs: relatedProduct.faqs || [],
     };
     addToCart(cartProduct as any, 1);
     setShowToast(true);
