@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { CheckCircle, Package, Truck, Mail, ArrowRight } from 'lucide-react';
 
-export default function OrdreBekreftelsePage() {
+function OrdreBekreftelse() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [orderNumber, setOrderNumber] = useState('');
@@ -122,5 +122,17 @@ export default function OrdreBekreftelsePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function OrdreBekreftelsePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#FAFAF8] flex items-center justify-center">
+        <div className="animate-spin w-12 h-12 border-4 border-[#2C5F4F] border-t-transparent rounded-full"></div>
+      </div>
+    }>
+      <OrdreBekreftelse />
+    </Suspense>
   );
 }
