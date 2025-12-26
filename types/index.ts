@@ -5,6 +5,7 @@ export interface Product {
   description: string;
   price: number;
   originalPrice?: number;
+  compare_at_price?: number;
   image: string;
   images?: string[];
   category: string;
@@ -16,6 +17,7 @@ export interface Product {
   ingredients?: string[];
   usage?: string;
   tags?: string[];
+  faqs?: Array<{ question: string; answer: string }>;
 }
 
 export interface Category {
